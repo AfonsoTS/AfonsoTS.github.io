@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Portfólio | Engenharia e Tecnologia</title>
+    <style>
+        /* Estilização Geral */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            color: #333;
+            background-color: #f4f4f9;
+        }
+
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+
+        /* Grid de Habilidades */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li::before {
+            content: "▹";
+            color: #3498db;
+            font-weight: bold;
+            display: inline-block; 
+            width: 1em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        a { color: #3498db; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Seu Nome Aqui</h1>
+    <p>Estudante de Engenharia | Desenvolvedor | Proativo</p>
+</header>
+
+<div class="container">
+    
+    <section id="sobre">
+        <h2>Sobre Mim</h2>
+        <p>
+            Sou um profissional proativo com forte participação ativa em eventos e projetos acadêmicos. 
+            Meu foco principal é a <strong>integração entre engenharia mecânica, eletrônica e programação</strong>, 
+            buscando soluções tecnológicas que unam hardware e software de forma eficiente.
+        </p>
+    </section>
+
+    <section id="habilidades">
+        <h2>Habilidades e Competências</h2>
+        <div class="skills-grid">
+            <div>
+                <h3>Técnicas (Hard Skills)</h3>
+                <ul>
+                    <li>Excel - Avançado</li>
+                    <li>Programação (R / Shiny)</li>
+                    <li>SolidWorks / CAD</li>
+                    <li>Sistemas Embarcados</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Pessoais (Soft Skills)</h3>
+                <ul>
+                    <li>Comunicação Assertiva</li>
+                    <li>Gestão de Projetos</li>
+                    <li>Trabalho em Equipe</li>
+                    <li>Resolução de Problemas</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato">
+        <h2>Contato</h2>
+        <p>Email: seuemail@exemplo.com</p>
+        <p>LinkedIn: <a href="#">linkedin.com/in/seuusuario</a></p>
+        <p>GitHub: <a href="#">github.com/seuusuario</a></p>
+    </section>
+
+</div>
+
+<footer>
+    © 2026 - Criado por Seu Nome
+</footer>
+
+</body>
+</html>
