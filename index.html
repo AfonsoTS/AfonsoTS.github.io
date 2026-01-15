@@ -3,128 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Portfólio | Engenharia e Tecnologia</title>
+    <title>Portfólio | Afonso Tyski Simião</title>
     <style>
-        /* Estilização Geral */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --bg: #f4f7f6;
+            --text: #333;
+            --white: #ffffff;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             line-height: 1.6;
             margin: 0;
-            color: #333;
-            background-color: #f4f4f9;
+            color: var(--text);
+            background-color: var(--bg);
         }
 
         header {
-            background: #2c3e50;
-            color: white;
-            padding: 2rem 1rem;
+            background: linear-gradient(135deg, var(--primary) 0%, #1a252f 100%);
+            color: var(--white);
+            padding: 4rem 1rem;
             text-align: center;
         }
 
+        header h1 { margin: 0; font-size: 2.5rem; letter-spacing: 1px; }
+        header p { opacity: 0.9; font-size: 1.1rem; margin-top: 10px; }
+
         .container {
-            max-width: 800px;
-            margin: 2rem auto;
+            max-width: 900px;
+            margin: -30px auto 2rem;
             padding: 0 1rem;
         }
 
         section {
-            background: white;
-            padding: 1.5rem;
+            background: var(--white);
+            padding: 2rem;
             margin-bottom: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         h2 {
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 0.5rem;
+            color: var(--primary);
+            border-left: 5px solid var(--secondary);
+            padding-left: 15px;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            font-size: 1.3rem;
         }
 
-        /* Grid de Habilidades */
+        h3 { color: var(--secondary); margin-bottom: 0.5rem; }
+
+        /* Experiência */
+        .job { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #eee; }
+        .job:last-child { border-bottom: none; }
+        .date { font-weight: bold; color: #666; font-size: 0.9rem; }
+
+        /* Skills Grid */
         .skills-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
 
-        ul {
-            list-style: none;
-            padding: 0;
+        .skill-item { margin-bottom: 10px; }
+        .skill-bar {
+            background: #eee;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 5px;
         }
+        .progress { background: var(--secondary); height: 100%; }
 
-        li::before {
-            content: "▹";
-            color: #3498db;
-            font-weight: bold;
-            display: inline-block; 
-            width: 1em;
+        /* Links e Botões */
+        .contact-links { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 1rem; }
+        .contact-links a { 
+            background: rgba(255,255,255,0.1); 
+            color: white; 
+            padding: 8px 15px; 
+            border-radius: 20px; 
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: 0.3s;
         }
+        .contact-links a:hover { background: var(--secondary); border-color: var(--secondary); }
 
-        footer {
-            text-align: center;
-            padding: 2rem;
-            font-size: 0.9rem;
-            color: #666;
+        footer { text-align: center; padding: 3rem; color: #888; }
+        
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            .skills-grid { grid-template-columns: 1fr; }
         }
-
-        a { color: #3498db; text-decoration: none; }
-        a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Seu Nome Aqui</h1>
-    <p>Estudante de Engenharia | Desenvolvedor | Proativo</p>
+    <h1>Afonso Tyski Simião</h1>
+    <p>Engenharia Mecatrônica | UTFPR</p>
+    <div class="contact-links">
+        <a href="mailto:afonsosimiao@gmail.com">📧 Email</a>
+        <a href="https://afonsots.github.io" target="_blank">🌐 Website</a>
+        <a href="tel:41991035650">📞 Contato</a>
+    </div>
 </header>
 
 <div class="container">
     
     <section id="sobre">
-        <h2>Sobre Mim</h2>
+        <h2>Resumo Profissional</h2>
         <p>
-            Sou um profissional proativo com forte participação ativa em eventos e projetos acadêmicos. 
-            Meu foco principal é a <strong>integração entre engenharia mecânica, eletrônica e programação</strong>, 
-            buscando soluções tecnológicas que unam hardware e software de forma eficiente.
+            [cite_start]Estudante de Engenharia Mecatrônica com forte interesse na integração entre <strong>mecânica, eletrônica e programação</strong>[cite: 9]. 
+            [cite_start]Busco aplicar meus conhecimentos técnicos para contribuir com os resultados da empresa, priorizando o aprendizado contínuo e o desenvolvimento profissional em colaboração com a equipe[cite: 10].
         </p>
+    </section>
+
+    <section id="formacao">
+        <h2>Formação Acadêmica</h2>
+        <div class="job">
+            <h3>Bacharelado em Engenharia Mecatrônica</h3>
+            <p><strong>UTFPR - Curitiba</strong> | [cite_start]<span class="date">01.2024 - 12.2028 (Cursando)</span> [cite: 36, 39]</p>
+        </div>
+    </section>
+
+    <section id="experiencia">
+        <h2>Experiência Profissional</h2>
+        
+        <div class="job">
+            <h3>Gerente de Pessoas</h3>
+            <p><strong>Empresa Júnior Cromo Consultoria</strong> | [cite_start]<span class="date">01.2025 - Atual</span> [cite: 20, 21]</p>
+            <ul>
+                [cite_start]<li>Coordenação de processos seletivos e pesquisas de clima[cite: 22].</li>
+                [cite_start]<li>Gestão de onboarding, desligamentos e plataformas de RH[cite: 23].</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <h3>Consultor de Projetos</h3>
+            <p><strong>Empresa Júnior Cromo Consultoria</strong> | [cite_start]<span class="date">05.2025 - 12.2025</span> [cite: 24, 25]</p>
+            <ul>
+                [cite_start]<li>Desenvolvimento de sistema de insensibilização de tilápias (automação)[cite: 26].</li>
+                [cite_start]<li>Atuação em modelagem 3D e programação[cite: 27].</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <h3>Bolsista em Projeto de Extensão</h3>
+            <p><strong>DEPEX-UTFPR</strong> | [cite_start]<span class="date">01.2017 - 12.2019</span> [cite: 28, 29]</p>
+            <ul>
+                [cite_start]<li>Criação de aplicação web em R Shiny para provas do ENEM[cite: 30].</li>
+                [cite_start]<li>Desenvolvimento de Machine Learning para classificação de temas[cite: 31].</li>
+                [cite_start]<li>Implementação de scripts de Web Scraping[cite: 32].</li>
+            </ul>
+        </div>
     </section>
 
     <section id="habilidades">
         <h2>Habilidades e Competências</h2>
         <div class="skills-grid">
             <div>
-                <h3>Técnicas (Hard Skills)</h3>
-                <ul>
-                    <li>Excel - Avançado</li>
-                    <li>Programação (R / Shiny)</li>
-                    <li>SolidWorks / CAD</li>
-                    <li>Sistemas Embarcados</li>
-                </ul>
+                <h3>Software e Programação</h3>
+                <div class="skill-item">
+                    [cite_start]<span>Linguagem R (Avançado)</span> [cite: 13]
+                    <div class="skill-bar"><div class="progress" style="width: 95%;"></div></div>
+                </div>
+                <div class="skill-item">
+                    [cite_start]<span>Excel (Avançado)</span> [cite: 11]
+                    <div class="skill-bar"><div class="progress" style="width: 90%;"></div></div>
+                </div>
+                <div class="skill-item">
+                    [cite_start]<span>SolidWorks (Intermediário)</span> [cite: 14]
+                    <div class="skill-bar"><div class="progress" style="width: 65%;"></div></div>
+                </div>
+                <div class="skill-item">
+                    [cite_start]<span>Python & Machine Learning</span> [cite: 13, 15]
+                    <div class="skill-bar"><div class="progress" style="width: 60%;"></div></div>
+                </div>
             </div>
             <div>
-                <h3>Pessoais (Soft Skills)</h3>
+                <h3>Idiomas</h3>
                 <ul>
-                    <li>Comunicação Assertiva</li>
-                    <li>Gestão de Projetos</li>
-                    <li>Trabalho em Equipe</li>
-                    <li>Resolução de Problemas</li>
+                    [cite_start]<li><strong>Português:</strong> Nativo [cite: 41]</li>
+                    [cite_start]<li><strong>Inglês:</strong> Avançado [cite: 43]</li>
+                    [cite_start]<li><strong>Francês:</strong> Básico [cite: 45]</li>
+                </ul>
+                <h3>Outros</h3>
+                <ul>
+                    [cite_start]<li>Power BI & VBA (Intermediário) [cite: 12, 15]</li>
+                    [cite_start]<li>Programação de CLP's (Básico) [cite: 16]</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <section id="contato">
-        <h2>Contato</h2>
-        <p>Email: seuemail@exemplo.com</p>
-        <p>LinkedIn: <a href="#">linkedin.com/in/seuusuario</a></p>
-        <p>GitHub: <a href="#">github.com/seuusuario</a></p>
-    </section>
-
 </div>
 
 <footer>
-    © 2026 - Criado por Seu Nome
+    © 2026 - Afonso Tyski Simião | Engenharia Mecatrônica
 </footer>
 
 </body>
