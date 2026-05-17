@@ -1,228 +1,881 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio | Afonso Tyski Simião</title>
-    <style>
-        :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --bg: #f4f7f6;
-            --text: #333;
-            --white: #ffffff;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Afonso Tyski Simião — Engenharia Mecatrônica</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* Animação de Entrada */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+  :root {
+    --ink: #e8eaf0;
+    --paper: #080c14;
+    --accent: #00d4ff;
+    --accent2: #4f8ef7;
+    --muted: #8892a4;
+    --line: rgba(0,212,255,0.12);
+    --serif: 'DM Serif Display', Georgia, serif;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+    --surface: #0d1421;
+    --surface2: #111827;
+  }
 
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            color: var(--text);
-            background-color: var(--bg);
-            overflow-x: hidden;
-        }
+  html { scroll-behavior: smooth; }
 
-        header {
-            background: linear-gradient(135deg, var(--primary) 0%, #1a252f 100%);
-            color: var(--white);
-            padding: 4rem 1rem;
-            text-align: center;
-            animation: fadeInUp 0.8s ease-out;
-        }
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
 
-        header h1 { margin: 0; font-size: 2.5rem; letter-spacing: 1px; }
-        
-        .contact-links { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 1.5rem; }
-        .contact-links a { 
-            background: rgba(255,255,255,0.1); 
-            color: white; 
-            padding: 10px 20px; 
-            border-radius: 8px; 
-            border: 1px solid rgba(255,255,255,0.3);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        .contact-links a:hover { 
-            background: var(--secondary); 
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
+  /* ── BACKGROUND EFFECTS ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      radial-gradient(ellipse 80% 50% at 20% 0%, rgba(0,212,255,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(79,142,247,0.05) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
 
-        .container {
-            max-width: 900px;
-            margin: -30px auto 2rem;
-            padding: 0 1rem;
-        }
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(0,212,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
 
-        section {
-            background: var(--white);
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            animation: fadeInUp 1s ease-out both;
-        }
+  .hero, .section, footer { position: relative; z-index: 1; }
 
-        /* Delay para as seções aparecerem em sequência */
-        section:nth-child(1) { animation-delay: 0.2s; }
-        section:nth-child(2) { animation-delay: 0.4s; }
-        section:nth-child(3) { animation-delay: 0.6s; }
-        section:nth-child(4) { animation-delay: 0.8s; }
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: clamp(2rem, 5vw, 4rem);
+    position: relative;
+    border-bottom: 1px solid var(--line);
+    background: linear-gradient(160deg, #080c14 0%, #0a1020 60%, #070b12 100%);
+  }
 
-        h2 {
-            color: var(--primary);
-            border-left: 5px solid var(--secondary);
-            padding-left: 15px;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            font-size: 1.3rem;
-        }
+  .hero-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
 
-        .project { margin-bottom: 2.5rem; transition: transform 0.3s; }
-        .project:hover { transform: translateX(5px); }
-        .project h3 { color: var(--secondary); margin-bottom: 0.3rem; }
-        
-        .project-tag { 
-            background: #e1f0fa; 
-            color: #2980b9; 
-            padding: 4px 12px; 
-            border-radius: 4px; 
-            font-size: 0.85rem; 
-            font-weight: bold;
-        }
-        
-        .date { font-weight: bold; color: #7f8c8d; font-size: 0.9rem; }
+  .hero-nav a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .hero-nav a:hover { color: var(--accent); }
 
-        .btn-link {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 20px;
-            background-color: var(--secondary);
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-        .btn-link:hover { background-color: #2980b9; }
+  .hero-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 0;
+  }
 
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: slideUp 0.6s 0.2s forwards;
+    text-shadow: 0 0 20px rgba(0,212,255,0.4);
+  }
 
-        ul { padding-left: 20px; }
-        li { margin-bottom: 10px; }
+  .hero-name {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 9vw, 8rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    opacity: 0;
+    animation: slideUp 0.7s 0.35s forwards;
+  }
 
-        footer { text-align: center; padding: 3rem; color: #888; font-size: 0.9rem; }
-    </style>
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
+    text-shadow: 0 0 40px rgba(0,212,255,0.3);
+  }
+
+  .hero-desc {
+    max-width: 520px;
+    margin-top: 2rem;
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.7;
+    opacity: 0;
+    animation: slideUp 0.7s 0.5s forwards;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: slideUp 0.7s 0.65s forwards;
+  }
+
+  .btn {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2px;
+    transition: all 0.25s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--paper);
+    box-shadow: 0 0 20px rgba(0,212,255,0.3);
+  }
+  .btn-primary:hover {
+    background: #00b8db;
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(0,212,255,0.5);
+  }
+
+  .btn-outline {
+    border: 1px solid rgba(0,212,255,0.4);
+    color: var(--accent);
+  }
+  .btn-outline:hover {
+    border-color: var(--accent);
+    background: rgba(0,212,255,0.08);
+    transform: translateY(-2px);
+  }
+
+  .hero-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .hero-scroll {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .scroll-line {
+    width: 40px;
+    height: 1px;
+    background: var(--muted);
+    animation: scrollPulse 2s infinite;
+  }
+
+  /* ── DECORATIVE ELEMENTS ── */
+  .hero-number {
+    position: absolute;
+    right: clamp(2rem, 5vw, 4rem);
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--serif);
+    font-size: clamp(12rem, 25vw, 22rem);
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(15,14,12,0.06);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* ── LAYOUT ── */
+  .section {
+    padding: clamp(3rem, 8vw, 6rem) clamp(2rem, 5vw, 4rem);
+    border-bottom: 1px solid var(--line);
+    background: var(--surface2);
+  }
+
+  .section:nth-child(odd) { background: var(--paper); }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+    max-width: 60px;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-heading {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .about-heading em { font-style: italic; color: var(--accent); }
+
+  .about-body {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .about-body p + p { margin-top: 1rem; }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0;
+    border: 1px solid var(--line);
+  }
+
+  .skill-item {
+    padding: 1.5rem;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    transition: background 0.2s;
+  }
+
+  .skill-item:hover { background: rgba(0,212,255,0.05); }
+
+  .skill-name {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .skill-level {
+    display: flex;
+    gap: 3px;
+  }
+
+  .skill-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .skill-dot.filled { background: var(--muted); border-color: var(--muted); }
+  .skill-dot.accent { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 6px rgba(0,212,255,0.5); }
+
+  /* ── EXPERIENCE ── */
+  .exp-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .exp-item:last-child { border-bottom: none; }
+
+  .exp-meta {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    text-transform: uppercase;
+    line-height: 1.6;
+    padding-top: 0.15rem;
+  }
+
+  .exp-tag {
+    display: inline-block;
+    margin-top: 0.75rem;
+    padding: 3px 8px;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: rgba(0,212,255,0.1);
+    color: var(--accent);
+    border: 1px solid rgba(0,212,255,0.3);
+    border-radius: 2px;
+  }
+
+  .exp-tag.alt { background: rgba(79,142,247,0.1); color: var(--accent2); border-color: rgba(79,142,247,0.3); }
+  .exp-tag.red { background: rgba(0,212,255,0.15); color: var(--accent); border-color: rgba(0,212,255,0.4); }
+
+  .exp-title {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .exp-org {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(0,212,255,0.3);
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .exp-bullets li {
+    font-size: 0.92rem;
+    color: var(--muted);
+    line-height: 1.6;
+    padding-left: 1.2rem;
+    position: relative;
+    font-weight: 300;
+  }
+
+  .exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.8rem;
+    text-shadow: 0 0 8px rgba(0,212,255,0.5);
+  }
+
+  .exp-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 1px;
+    transition: color 0.2s;
+  }
+
+  .exp-link:hover { color: var(--accent); }
+
+  /* ── AWARDS ── */
+  .awards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .award-item {
+    padding: 2rem;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    background: var(--surface);
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .award-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--accent);
+    transform: scaleY(0);
+    transition: transform 0.25s;
+    box-shadow: 0 0 12px rgba(0,212,255,0.5);
+  }
+
+  .award-item:hover::before { transform: scaleY(1); }
+  .award-item:hover { transform: translateX(4px); }
+
+  .award-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+  .award-title { font-family: var(--serif); font-size: 1.1rem; margin-bottom: 0.3rem; }
+  .award-desc { font-size: 0.85rem; color: var(--muted); font-weight: 300; }
+
+  /* ── CONTACT ── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .contact-heading {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .contact-heading em { font-style: italic; color: var(--accent); }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: var(--ink);
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    background: var(--surface);
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+    transition: all 0.25s;
+  }
+
+  .contact-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateX(6px);
+    box-shadow: 0 0 20px rgba(0,212,255,0.1);
+  }
+
+  .contact-link-icon { font-size: 1rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem clamp(2rem, 5vw, 4rem);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--paper);
+    border-top: 1px solid var(--line);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { width: 40px; }
+    50% { width: 60px; }
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .about-grid,
+    .contact-grid,
+    .awards-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .hero-number { display: none; }
+  }
+</style>
 </head>
 <body>
 
-<header>
-    <h1>Afonso Tyski Simião</h1>
-    <p>Engenharia Mecatrônica | UTFPR</p>
-    <div class="contact-links">
-        <a href="mailto:afonsosimiao@gmail.com">📧 Email</a>
-        <a href="tel:41991035650">📞 (41) 99103-5650</a>
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <nav class="hero-nav">
+    <span>Afonso T. Simião</span>
+    <div style="display:flex; gap:2rem;">
+      <a href="#experiencia">Experiência</a>
+      <a href="#habilidades">Habilidades</a>
+      <a href="#contato">Contato</a>
     </div>
-</header>
+  </nav>
 
-<div class="container">
-    
-    <section id="resumo">
-        <h2>Resumo Profissional</h2>
-        <p>
-            Estudante de Engenharia Mecatrônica com forte interesse na integração entre <strong>mecânica, eletrônica e programação</strong>. 
-            Busco aplicar meus conhecimentos técnicos para contribuir com os resultados da empresa, priorizando o aprendizado contínuo e o desenvolvimento profissional em colaboração com a equipe.
-        </p>
-    </section>
+  <div class="hero-center">
+    <p class="hero-eyebrow">Engenharia Mecatrônica · UTFPR · Curitiba</p>
+    <h1 class="hero-name">Afonso<br><em>Tyski</em><br>Simião</h1>
+    <p class="hero-desc">
+      Estudante de Mecatrônica com experiência em automação industrial, machine learning e desenvolvimento web. Construindo na interseção entre hardware e dados.
+    </p>
+    <div class="hero-cta">
+      <a href="mailto:afonsosimiao@gmail.com" class="btn btn-primary">✉ Contato</a>
+      <a href="https://afonsots.github.io" target="_blank" class="btn btn-outline">↗ GitHub</a>
+    </div>
+  </div>
 
-    <section id="formacao">
-        <h2>Formação Acadêmica</h2>
-        <div class="project">
-            <h3>Bacharelado em Engenharia Mecatrônica</h3>
-            <p><strong>UTFPR - Curitiba</strong> | <span class="date">01.2024 - 12.2028 (Cursando)</span></p>
-        </div>
-    </section>
+  <div class="hero-bottom">
+    <span>Disponível para projetos</span>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </div>
 
-    <section id="experiencia">
-        <h2>Projetos e Experiência</h2>
+  <div class="hero-number" aria-hidden="true">AT</div>
+</section>
 
-        <div class="project">
-            <span class="date">05.2025 - 12.2025</span>
-            <h3>Sistema de Insensibilização de Tilápias</h3>
-            <span class="project-tag">Automação Industrial / Cromo Consultoria</span>
-            <p>
-                Desenvolvimento de um sistema de insensibilização humanizada para tilápias. 
-                Minha atuação envolveu a modelagem 3D dos componentes mecânicos, programação de sistemas e o desenvolvimento de soluções técnicas para otimizar o processo industrial.
-            </p>
-        </div>
+<!-- ══ SOBRE ══ -->
+<section class="section" id="sobre">
+  <p class="section-label">Sobre</p>
+  <div class="about-grid reveal">
+    <h2 class="about-heading">Engenharia na <em>fronteira</em> entre sistemas</h2>
+    <div class="about-body">
+      <p>Estudante de Engenharia Mecatrônica na UTFPR com experiência prática em automação industrial, ciência de dados e desenvolvimento de software — da programação de CLPs a modelos de machine learning.</p>
+      <p>Na Empresa Júnior Cromo, atuei simultaneamente como consultor técnico e gerente de pessoas, desenvolvendo visão sistêmica e liderança orientada a resultados.</p>
+      <p>Inglês avançado. Francês básico. Previsão de formatura: dezembro de 2028.</p>
+    </div>
+  </div>
+</section>
 
-        <div class="project">
-            <span class="date">01.2017 - 12.2019</span>
-            <h3>Plataforma EducaShiny</h3>
-            <span class="project-tag">Machine Learning & Data Science / DEPEX-UTFPR</span>
-            <p>
-                Desenvolvimento de uma aplicação web robusta utilizando <strong>R Shiny</strong> para a criação automatizada de provas com base no banco de dados do ENEM. Inclui modelos de <strong>Machine Learning</strong> para classificação de temas e <strong>Web Scraping</strong> para coleta de dados.
-            </p>
-            <a href="https://educashiny.shinyapps.io/gerador_questoes/" target="_blank" class="btn-link">Ver Projeto Online</a>
-        </div>
+<!-- ══ HABILIDADES ══ -->
+<section class="section" id="habilidades">
+  <p class="section-label">Habilidades técnicas</p>
+  <div class="skills-grid reveal">
 
-        <div class="project">
-            <h3>Projeto Social: Capacitação Técnica</h3>
-            <span class="project-tag">Educação / Clínica de Reabilitação</span>
-            <p>
-                Gravação e edição de vídeo aulas de capacitação técnica, focadas em preparar os alunos para o mercado de trabalho com conteúdos de:
-            </p>
-            <ul>
-                <li>Mecânica e Metrologia básica.</li>
-                <li>Matemática aplicada.</li>
-            </ul>
-        </div>
-    </section>
+    <div class="skill-item">
+      <div class="skill-name">Python & ML</div>
+      <div class="skill-level">
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot filled"></div>
+        <div class="skill-dot"></div>
+      </div>
+    </div>
 
-    <section id="habilidades">
-        <h2>Habilidades Técnicas</h2>
-        <div class="skills-grid">
-            <div>
-                <h3>Software e Programação</h3>
-                <ul>
-                    <li>Linguagem R (Avançado)</li>
-                    <li>Excel Avançado e VBA</li>
-                    <li>Python & Machine Learning</li>
-                    <li>SolidWorks (Modelagem 3D)</li>
-                </ul>
-            </div>
-            <div>
-                <h3>Idiomas</h3>
-                <ul>
-                    <li><strong>Inglês:</strong> Avançado</li>
-                    <li><strong>Francês:</strong> Básico</li>
-                    <li><strong>Português:</strong> Nativo</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+    <div class="skill-item">
+      <div class="skill-name">Linguagem R / Shiny</div>
+      <div class="skill-level">
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot filled"></div>
+        <div class="skill-dot"></div>
+      </div>
+    </div>
 
-</div>
+    <div class="skill-item">
+      <div class="skill-name">SolidWorks 3D</div>
+      <div class="skill-level">
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot filled"></div>
+        <div class="skill-dot"></div>
+      </div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-name">Gestão de Projetos</div>
+      <div class="skill-level">
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot filled"></div>
+        <div class="skill-dot"></div>
+      </div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-name">Excel</div>
+      <div class="skill-level">
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot filled"></div>
+        <div class="skill-dot"></div>
+      </div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-name">Programação CLPs</div>
+      <div class="skill-level">
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot filled"></div>
+        <div class="skill-dot"></div>
+        <div class="skill-dot"></div>
+      </div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-name">Arduino</div>
+      <div class="skill-level">
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot filled"></div>
+        <div class="skill-dot"></div>
+        <div class="skill-dot"></div>
+      </div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-name">Power BI</div>
+      <div class="skill-level">
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot filled"></div>
+        <div class="skill-dot"></div>
+        <div class="skill-dot"></div>
+      </div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-name">PSIM / Tina Ti</div>
+      <div class="skill-level">
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot filled"></div>
+        <div class="skill-dot"></div>
+      </div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-name">Protocolos Comunicação</div>
+      <div class="skill-level">
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot filled"></div>
+        <div class="skill-dot"></div>
+        <div class="skill-dot"></div>
+      </div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-name">Inglês</div>
+      <div class="skill-level">
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot filled"></div>
+      </div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-name">Francês</div>
+      <div class="skill-level">
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot accent filled"></div>
+        <div class="skill-dot filled"></div>
+        <div class="skill-dot"></div>
+        <div class="skill-dot"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ EXPERIÊNCIA ══ -->
+<section class="section" id="experiencia">
+  <p class="section-label">Experiência</p>
+
+  <div class="exp-item reveal">
+    <div class="exp-meta">
+      Jan 2017 — Dez 2018
+      <br>São José dos Pinhais
+    </div>
+    <div>
+      <h3 class="exp-title">Vendedor</h3>
+      <p class="exp-org">ADM Informática</p>
+      <ul class="exp-bullets">
+        <li>Atendimento ao cliente com foco em soluções</li>
+        <li>Elaboração de orçamentos de equipamentos</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exp-item reveal">
+    <div class="exp-meta">
+      Jan 2025 — Mai 2026
+      <br>Curitiba, PR
+      <br><span class="exp-tag">Técnico</span>
+    </div>
+    <div>
+      <h3 class="exp-title">Consultor de Projetos</h3>
+      <p class="exp-org">Empresa Júnior Cromo Consultoria</p>
+      <ul class="exp-bullets">
+        <li>Projeto "Sistema de insensibilização de tilápias": programação de CLPs e dimensionamento eletrônico</li>
+        <li>Modelagem 3D, programação e desenvolvimento de soluções técnicas</li>
+        <li>Projeto social de aulas de mecânica e metrologia básica para pessoas em reabilitação</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exp-item reveal">
+    <div class="exp-meta">
+      Jan 2025 — Mai 2026
+      <br>Curitiba, PR
+      <br><span class="exp-tag red">Gestão</span>
+    </div>
+    <div>
+      <h3 class="exp-title">Gerente de Pessoas</h3>
+      <p class="exp-org">Empresa Júnior Cromo Consultoria</p>
+      <ul class="exp-bullets">
+        <li>Diagnóstico da cultura organizacional via metodologia OCAI, gerando mudanças que aumentaram o engajamento da equipe</li>
+        <li>Gestão do ciclo do membro (onboarding e saida), automatizando a geração de certificados</li>
+        <li>Liderança do maior processo seletivo da Cromo: 80 participantes, gerenciando o funil de candidatos em todas as etapas</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exp-item reveal">
+    <div class="exp-meta">
+      Mai 2025 — Dez 2025
+      <br>Curitiba, PR
+      <br><span class="exp-tag alt">Dados</span>
+    </div>
+    <div>
+      <h3 class="exp-title">Bolsista em Projeto de Extensão</h3>
+      <p class="exp-org">DEPEX — UTFPR</p>
+      <ul class="exp-bullets">
+        <li>Desenvolvimento de aplicação web em R e Shiny para criação automatizada de provas baseadas no ENEM</li>
+        <li>Modelo de machine learning para classificação automática de temas do ENEM</li>
+        <li>Implementação de scripts de web scraping para coleta automatizada de dados em larga escala</li>
+      </ul>
+      <a href="https://educashiny.shinyapps.io/gerador_questoes/" target="_blank" class="exp-link">Ver projeto online ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FORMAÇÃO ══ -->
+<section class="section" id="formacao">
+  <p class="section-label">Formação acadêmica</p>
+  <div class="exp-item reveal" style="border-bottom:none; padding-bottom:0;">
+    <div class="exp-meta">
+      Jan 2024 — Dez 2028
+      <br>Curitiba, PR
+      <br><span class="exp-tag">Cursando</span>
+    </div>
+    <div>
+      <h3 class="exp-title">Bacharelado em Engenharia Mecatrônica</h3>
+      <p class="exp-org">UTFPR — Universidade Tecnológica Federal do Paraná</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONQUISTAS ══ -->
+<section class="section" id="conquistas">
+  <p class="section-label">Conquistas & Prêmios</p>
+  <div class="awards-grid reveal">
+    <div class="award-item">
+      <div class="award-icon">🏅</div>
+      <div class="award-title">Menção Honrosa — OBMEP 2022</div>
+      <div class="award-desc">Olimpíada Brasileira de Matemática das Escolas Públicas — reconhecimento nacional em matemática</div>
+    </div>
+    <div class="award-item">
+      <div class="award-icon">🎓</div>
+      <div class="award-title">Destaque Acadêmico</div>
+      <div class="award-desc">Rede Adventista de Educação — reconhecimento por desempenho acadêmico excepcional</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTATO ══ -->
+<section class="section" id="contato">
+  <p class="section-label">Contato</p>
+  <div class="contact-grid reveal">
+    <div>
+      <h2 class="contact-heading" style="font-family:var(--mono); font-size:clamp(1rem,2vw,1.2rem); letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); font-weight:400; margin-bottom:1rem;">Informações de contato</h2>
+      <p style="font-size:0.95rem; color:var(--muted); font-weight:300; line-height:1.8; max-width:320px;">Disponível para estágios, projetos técnicos e oportunidades de colaboração na área de automação, dados e engenharia.</p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:afonsosimiao@gmail.com" class="contact-link">
+        <span class="contact-link-icon">✉</span>
+        afonsosimiao@gmail.com
+      </a>
+      <a href="tel:41991035659" class="contact-link">
+        <span class="contact-link-icon">📞</span>
+        (41) 99103-5659
+      </a>
+      <a href="https://afonsots.github.io" target="_blank" class="contact-link">
+        <span class="contact-link-icon">↗</span>
+        afonsots.github.io
+      </a>
+    </div>
+  </div>
+</section>
 
 <footer>
-    © 2026 - Afonso Tyski Simião
+  <span>© 2026 Afonso Tyski Simião</span>
+  <span>Curitiba · Paraná · Brasil</span>
 </footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
